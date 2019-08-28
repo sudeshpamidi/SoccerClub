@@ -1,0 +1,21 @@
+[{
+        "Name": "Texas Scavenger Hunts",
+        "Code": "TexasHunts",
+        "Description": "This league consists of teams based in Texas"
+    },
+    {
+        "Name": "Open Scavenger Hunts",
+        "Code": "OpenHunt",
+        "Description": "This league consists of teams based all over the world"
+    },
+    {
+        "Name": "Coastal Scavenger Hunts",
+        "Code": "CoastalHunt",
+        "Description": "This league consists teams that live near a coastline"
+    },
+    {
+        "Name": "Eastern Scavenger Hunts",
+        "Code": "CoastalHunt",
+        "Description": "This league consists teams that live near a coastline"
+    }
+]
