@@ -1,0 +1,72 @@
+[{
+        "TeamId": 1,
+        "TeamName": "RubyVersaries",
+        "League": "OpenHunt",
+        "ManagerName": "Dana Wyatt",
+        "ManagerPhone": "817-291-8146",
+        "ManagerEmail": "danaatemca@aol.com",
+        "MaxTeamMembers": 4,
+        "MinMemberAge": 0,
+        "MaxMemberAge": 100,
+        "TeamGender": "Any",
+        "Members": [{
+                "MemberId": 1,
+                "Email": "danaatemca@aol.com",
+                "MemberName": "Dana Wyatt",
+                "ContactName": "Dana Wyatt",
+                "Age": 60,
+                "Gender": "Female",
+                "Phone": "817-291-8146"
+            },
+            {
+                "MemberId": 2,
+                "Email": "bgatemca@aol.com",
+                "MemberName": "Brenda Kay",
+                "ContactName": "Brenda Kay",
+                "Age": 63,
+                "Gender": "Female",
+                "Phone": "817-555-5555"
+            },
+            {
+                "MemberId": 3,
+                "Email": "Natalie214@aol.com",
+                "MemberName": "Elisha Aiden",
+                "ContactName": "Natalie Plyers",
+                "Age": 10,
+                "Gender": "Male",
+                "Phone": "817-555-5454"
+            }
+        ]
+    },
+    {
+        "TeamId": 2,
+        "TeamName": "Wildlings",
+        "League": "Under18Hunt",
+        "ManagerName": "Natalie Plyers",
+        "ManagerPhone": "817-555-5454",
+        "ManagerEmail": "Natalie214@aol.com",
+        "MinAge": 0,
+        "MaxAge": 17,
+        "MaxTeamMembers": 6,
+        "TeamGender": "Male",
+        "Members": [{
+                "MemberId": 4,
+                "Email": "Natalie214@aol.com",
+                "MemberName": "Elisha Plyers",
+                "ContactName": "Natalie Plyers",
+                "Age": 10,
+                "Gender": "Male",
+                "Phone": "817-555-5454"
+            },
+            {
+                "MemberId": 5,
+                "Email": "Natalie214@aol.com",
+                "MemberName": "Ezra Plyers",
+                "ContactName": "Natalie Plyers",
+                "Age": 15,
+                "Gender": "Male",
+                "Phone": "817-555-5454"
+            }
+        ]
+    }
+]
