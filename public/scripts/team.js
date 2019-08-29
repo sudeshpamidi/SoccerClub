@@ -1,10 +1,20 @@
 "use strict"
 $(document).ready(function() {
 
+
+    let urlParams = new URLSearchParams(location.search);
+    let teamId = urlParams.get("id");
+
     fillLeague($("#league"));
     fillAge($("#maxage"));
     fillAge($("#minage"));
     fillAge($("#maxnum"));
+
+    if (teamId != "") {
+        getTeam(teamId);
+    }
+
+
 
     $("#save").click(function() {
         // if (!validator.validate("#frmTeam")) {
@@ -30,6 +40,31 @@ $(document).ready(function() {
 
 
 
+    /**
+     * This function makes a call to restful services and gets the team information and 
+     * display in the tbody element.
+     * @param {string} teamId  -- Course Id
+     */
+    function getTeam(teamId) {
+        let url = "/api/teams/" + teamId;
+        $.getJSON(url, function(team) {
+                populateTeam(team);
+            })
+            .fail(function() {
+                //$("#teamid").popover("hide");
+            })
+            .done(function() {
+                //$("#save").html("Edit Course");
+            });
+    };
+
+    function populateTeam(team) {
+        console.log(team);
+        if (course != undefined) {
+            $("#teamid").val(teamId);
+        }
+
+    }
 
     /**
      * display the success message, 

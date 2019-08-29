@@ -1,7 +1,6 @@
 $(document).ready(function() {
 
     fillDropDown($("#leagues"));
-
     $("#leagues").on("change", displayTeams);
 
     getTeams("all");
@@ -44,7 +43,7 @@ $(document).ready(function() {
      * @param {string} category 
      */
     function getTeams(league) {
-        alert(league);
+
         let url = "/api/teams/byleague/" + league;
         console.log(url);
         if (league == "all") {
@@ -73,8 +72,8 @@ $(document).ready(function() {
     function populateTable(data) {
         data.forEach(function(e) {
             let url = `<span>
-                         <a href='details.html?id=${e.teamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
-                         <a class='edit1 mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.teamId}&edit=true'><i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a href='team.html?id=${e.TeamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
+                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.TeamId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
                      </span>`
             let markup = "<tr><td>" + e.TeamName + "</td><td>" + e.League + "</td><td>" + e.ManagerName + "</td><td>" + e.ManagerPhone + "</td><td>" + url + "</td> </tr>";
             $("#tableTeams tbody").append(markup);
