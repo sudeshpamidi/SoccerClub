@@ -70,7 +70,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                     <h6 class="dropdown-header">Login Screens:</h6>
-                    <a class="dropdown-item" href="login.html">Login</a>
+                    <a class="dropdown-item" href="team.html">Add New Team</a>
                     <a class="dropdown-item" href="register.html">Register</a>
                     <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
                     <div class="dropdown-divider"></div>
@@ -107,9 +107,19 @@
                 <div class="row" id="iconCards">
                     <div class="col-sm-10 offset-sm-1">
                         <div class="card ">
-                            <div class="card-header">Add Team</div>
+                            <div class="card-header">
+                                <h2>Add Team</h2>
+                            </div>
                             <div class="card-body">
-                                <form class="mb-2" id="frmCourse" action="#" method="GET">
+                                <form class="mb-2" id="frmTeam" action="#" method="GET">
+                                    <div class="form-group row">
+                                        <label for="teamid" class="col-sm-2 offset-sm-3 col-form-label">Team ID:<span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-4">
+                                            <div class="input-group mb-1">
+                                                <input type="text" class="form-control" placeholder="Team ID" id="teamid" name="teamid" aria-label="Team Id" required data-role="validate" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="form-group row">
                                         <label for="teamname" class="col-sm-2 offset-sm-3 col-form-label">Team Name<span class="red">&nbsp;*</span></label>
@@ -123,7 +133,7 @@
                                         <label for="league" class="col-sm-2 offset-sm-3 col-form-label">League: <span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <select class="custom-select form-control" id="league" name="league">                                                
+                                                <select class="custom-select form-control" id="league" name="leaguecode">                                                
                                                     </select>
                                             </div>
                                         </div>
@@ -132,17 +142,25 @@
                                         <label for="managername" class="col-sm-2 offset-sm-3 col-form-label">Manager Name:<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group">
-                                                <input type="text" class="form-control mb-1" title="Manager Name" maxlength="30" placeholder="Title" id="managername" name="managername" aria-label="Manager Name" required data-content="Manager Name is required. The name must be a series of alpha-numeric characters only."
+                                                <input type="text" class="form-control mb-1" title="Manager Name" maxlength="30" placeholder="Manager Name" id="managername" name="managername" aria-label="Manager Name" required data-content="Manager Name is required. The name must be a series of alpha-numeric characters only."
                                                     data-role="validate">
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="form-group row">
-                                        <label for="manageemail" class="col-sm-2 offset-sm-3 col-form-label">Manager Email:</label>
+                                        <label for="managerphone" class="col-sm-2 offset-sm-3 col-form-label">Manager Phone:<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" placeholder="Manager Email" title="Manager Email" id="manageemail" name="manageemail" aria-label="Email" required data-content="An email address is required." data-role="validate">
+                                                <input type="text" class="form-control mb-1" title="Manager Phone" maxlength="30" placeholder="Manager Phone" id="managerphone" name="managerphone" aria-label="Manager Name" required data-content="Manager Phone is required. The Phone must be a series of alpha-numeric characters only."
+                                                    data-role="validate">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="manageremail" class="col-sm-2 offset-sm-3 col-form-label">Manager Email:</label>
+                                        <div class="col-sm-4">
+                                            <div class="input-group">
+                                                <input type="email" class="form-control" placeholder="Manager Email" title="Manager Email" id="manageremail" name="manageremail" aria-label="Email" required data-content="An email address is required." data-role="validate">
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +168,7 @@
                                         <label for="maxage" class="col-sm-2 offset-sm-3 col-form-label">Min. Age: <span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <select class="custom-select form-control" id="maxage" name="maxage">                                                
+                                                <select class="custom-select form-control" id="maxage" name="maxmemberage">                                                
                                                     </select>
                                             </div>
                                         </div>
@@ -160,7 +178,7 @@
                                         <label for="minage" class="col-sm-2 offset-sm-3 col-form-label">Max. Age: <span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <select class="custom-select form-control" id="minage" name="minage">                                                
+                                                <select class="custom-select form-control" id="minage" name="minmemberage">                                                
                                                         </select>
                                             </div>
                                         </div>
@@ -172,16 +190,16 @@
                                             <div class="input-group mt-1">
                                                 <div class="form-check form-check-inline">
                                                     <div class="custom-control custom-radio mr-3">
-                                                        <input class="custom-control-input" type="radio" id="gendermale" name="gender" value="Male" checked>
+                                                        <input class="custom-control-input" type="radio" id="gendermale" name="teamgender" value="Male" checked>
                                                         <label class="custom-control-label" for="gendermale">Male</label>
                                                     </div>
                                                     <div class="custom-control custom-radio mr-3">
-                                                        <input class="custom-control-input" type="radio" id="genderfemale" name="gender" value="Female">
-                                                        <label class="custom-control-label" for="discountAAA">Female</label>
+                                                        <input class="custom-control-input" type="radio" id="genderfemale" name="teamgender" value="Female">
+                                                        <label class="custom-control-label" for="genderfemale">Female</label>
                                                     </div>
                                                     <div class="custom-control custom-radio mr-3">
-                                                        <input class="custom-control-input" type="radio" id="genderany" name="gender" value="Any">
-                                                        <label class="custom-control-label" for="discountSenior">Any</label>
+                                                        <input class="custom-control-input" type="radio" id="genderany" name="teamgender" value="Any">
+                                                        <label class="custom-control-label" for="genderany">Any</label>
                                                     </div>
                                                 </div>
 
@@ -193,7 +211,7 @@
                                         <label for="maxnum" class="col-sm-2 offset-sm-3 col-form-label">Max Team Members: <span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <select class="custom-select form-control" id="maxnum" name="maxnum">                                                
+                                                <select class="custom-select form-control" id="maxnum" name="maxteammembers">                                                
                                                     </select>
                                             </div>
                                         </div>
@@ -292,25 +310,6 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -320,7 +319,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" crossorigin="anonymous"></script> -->
 
-        <script src="scripts/index.js"></script>
+        <script src="scripts/team.js"></script>
 
 </body>
 

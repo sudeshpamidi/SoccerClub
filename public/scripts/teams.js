@@ -1,18 +1,17 @@
 $(document).ready(function() {
 
     fillDropDown($("#leagues"));
-
     $("#leagues").on("change", displayTeams);
 
     getTeams("all");
 
     /**
-     * Display the course information in the table.
+     * Display the team information in the table.
      */
     function displayTeams() {
         clearResults($("#tableTeams thead"));
-        clearResults($("#tableTeams thead"));
-        getTeams("all") //  ($("#leagues").val());
+        clearResults($("#tableTeams tbody"));
+        getTeams($("#leagues").val());
     }
 
     /**
@@ -39,13 +38,14 @@ $(document).ready(function() {
     };
 
     /**
-     * Display the course information by category. 
-     * all -- provides all the courses.
+     * Display the team information by category. 
+     * all -- provides all the teams.
      * @param {string} category 
      */
     function getTeams(league) {
 
-        let url = "/api/teams/" + league;
+        let url = "/api/teams/byleague/" + league;
+        console.log(url);
         if (league == "all") {
             url = "/api/teams";
         };
@@ -61,21 +61,21 @@ $(document).ready(function() {
      * creating header in the table
      */
     function populateHeader() {
-        let markup = "<tr><th>Team Name</th><th>League</th><th>Manager Name</th><th>Manager Phone</th></tr>";
+        let markup = "<tr><th>Team Name</th><th>League</th><th>Manager Name</th><th>Manager Phone</th><th>Action</th></tr>";
         $("#tableTeams thead").append(markup)
     }
 
     /**
-     * Display course information in the table -#tableCourses
-     * @param {object} data  -- Courses object from Restfull services
+     * Display team information in the table -#tableteams
+     * @param {object} data  -- teams object from Restfull services
      */
     function populateTable(data) {
         data.forEach(function(e) {
-            // let url = `<span>
-            //             <a href='details.html?id=${e.CourseId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
-            //             <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='course.html?id=${e.CourseId}&edit=true'><i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
-            //         </span>`
-            let markup = "<tr><td>" + e.TeamName + "</td><td>" + e.League + "</td><td>" + e.ManagerName + "</td><td>" + e.ManagerPhone + "</td></tr>";
+            let url = `<span>
+                         <a href='team.html?id=${e.TeamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
+                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.TeamId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                     </span>`
+            let markup = "<tr><td>" + e.TeamName + "</td><td>" + e.League + "</td><td>" + e.ManagerName + "</td><td>" + e.ManagerPhone + "</td><td>" + url + "</td> </tr>";
             $("#tableTeams tbody").append(markup);
         });
     };
