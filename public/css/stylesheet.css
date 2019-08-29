@@ -170,3 +170,57 @@
     -webkit-transform: rotate(15deg);
     transform: rotate(15deg);
 }
+
+
+/* image card size */
+
+.image-card {
+    width: 900px;
+    height: 400px;
+}
+
+.fade {
+    opacity: 1;
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
+
+.fade:hover {
+    opacity: 0.5;
+}
+
+.pe-hst-slidelabel {
+    position: relative;
+    top: 221px;
+    height: 79px;
+    background-image: url(/public/images/slidelabelbg.png) repeat-x;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: .15s box-shadow, .15s transform;
+    border-radius: .5rem;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+    transition: background-color .15s ease-in-out;
+    transition-property: background-color;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+}
+
+.item-preview a.item-preview-img {
+    transition: .15s box-shadow, .15s transform;
+    border-radius: .5rem;
+    box-shadow: 0 2rem 1.5rem -1.5rem rgba(33, 37, 41, .15), 0 0 1.5rem 0.5rem rgba(33, 37, 41, .05);
+    overflow: hidden;
+}
