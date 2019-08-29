@@ -43,10 +43,11 @@ $(document).ready(function() {
     /**
      * This function makes a call to restful services and gets the team information and 
      * display in the tbody element.
-     * @param {string} teamId  -- Course Id
+     * @param {string} teamId  -- team Id
      */
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
+
         $.getJSON(url, function(team) {
                 populateTeam(team);
             })
@@ -60,8 +61,18 @@ $(document).ready(function() {
 
     function populateTeam(team) {
         console.log(team);
-        if (course != undefined) {
+        if (team != undefined) {
             $("#teamid").val(teamId);
+            $("#teamname").val(team["TeamName"]);
+            $("#league option:contains(" + team["League"] + ")").attr('selected', 'selected');
+            $("#managername").val(team["ManagerName"]);
+            $("#managerphone").val(team["ManagerPhone"]);
+            $("#manageremail").val(team["ManagerEmail"]);
+            $("#minage option:contains(" + team["MinMemberAge"] + ")").attr('selected', 'selected');
+            $("#maxage option:contains(" + team["MaxMemberAge"] + ")").attr('selected', 'selected');
+            $("#maxnum option:contains(" + team["MaxTeamMembers"] + ")").attr('selected', 'selected');
+
+            $("#save, h2").html("Edit Team");
         }
 
     }
