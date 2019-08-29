@@ -92,35 +92,47 @@
         </ul>
 
         <div id="content-wrapper">
-
             <div class="container-fluid">
                 <h1>Teams</h1>
+
                 <!-- Breadcrumbs-->
-                <ol class="breadcrumb">
+                <!-- <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a href="#">Dashboard</a>
                     </li>
                     <li class="breadcrumb-item active">Overview</li>
-                </ol>
+                </ol> -->
+
+
+                <div class="form-group row">
+                    <label for="leagues" class="col-sm-2 offset-sm-3 col-form-label"><i class="fas fa-futbol"></i>Leagues<span class="red">&nbsp;*</span></label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <select class="custom-select form-control" id="leagues" name="leagues">                                                
+                                </select>
+                        </div>
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" id="add" href="team.html" role="button" title="Add Course" data-toggle="tooltip">
+                            <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+
 
                 <!-- DataTables Example -->
                 <div class="card mb-3">
                     <div class="card-header">
-                        <i class="fas fa-table"></i> Data Table Example</div>
+                        <i class="fas fa-table"></i> League </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="tableTeams" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
-                                    </tr>
                                 </thead>
-                                <tfoot>
+                                <tbody>
+
+                                </tbody>
+                                <!-- <tfoot>
                                     <tr>
                                         <th>Name</th>
                                         <th>Position</th>
@@ -129,8 +141,8 @@
                                         <th>Start date</th>
                                         <th>Salary</th>
                                     </tr>
-                                </tfoot>
-                                <tbody>
+                                </tfoot> -->
+                                <!-- <tbody>
                                     <tr>
                                         <td>Tiger Nixon</td>
                                         <td>System Architect</td>
@@ -587,7 +599,7 @@
                                         <td>2011/01/25</td>
                                         <td>$112,000</td>
                                     </tr>
-                                </tbody>
+                                </tbody> -->
                             </table>
                         </div>
                     </div>
@@ -616,25 +628,6 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <!-- Optional JavaScript -->
