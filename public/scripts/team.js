@@ -16,12 +16,10 @@ $(document).ready(function() {
         getTeam(teamId);
     }
 
-
-
     $("#save").click(function() {
-        // if (!validator.validate("#frmTeam")) {
-        //     return;
-        // }
+        if (!validator.validate("#frmTeam")) {
+            return;
+        }
         let postData = $("#frmTeam").serialize();
         let url = "/api/teams",
             type = ($(this).html() == "Edit Team" ? "PUT" : "POST");
@@ -34,7 +32,9 @@ $(document).ready(function() {
             .done(function() {
                 displayMessage("Team has been added/edited."); // need to do
                 $('#teamModal').modal('show');
+                $(".card-header h2").html("Edit Team");
                 $("#save").html("Edit Team");
+
             })
             .fail(function() {
                 console.log('Opps.. something went wrong in while creating the course.');
@@ -77,11 +77,6 @@ $(document).ready(function() {
             $("input[name='teamgender'][value='" + team["TeamGender"] + "']").prop('checked', true);
 
             $("#save, h2").html("Edit Team");
-
-
-
-
-
         }
 
     }
