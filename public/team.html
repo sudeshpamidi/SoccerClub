@@ -125,7 +125,7 @@
                                         <label for="teamname" class="col-sm-2 offset-sm-3 col-form-label">Team Name<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <input type="text" class="form-control" placeholder="Team Name" id="teamname" name="teamname" aria-label="Team Name" required data-role="validate">
+                                                <input type="text" class="form-control" placeholder="Team Name" id="teamname" name="teamname" aria-label="Team Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
                                             </div>
                                         </div>
                                     </div>
@@ -272,9 +272,6 @@
                                     </div> -->
                                 </form>
                                 <div class="text-center">
-                                    <!-- <a class="d-block small mt-3" href="login.html">Login Page</a>
-                                    <a class="d-block small" href="forgot-password.html">Forgot Password?</a> -->
-
                                     <div class="col-sm-8 offset-sm-2">
                                         <button class="btn text-white btn-primary" id="save" data-role="trigger-validation">Add Team</button>
                                         <a class="btn btn-primary" id="cancel" href="teams.html" role="button">Cancel</a>
@@ -344,6 +341,7 @@
         <!-- <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" crossorigin="anonymous"></script> -->
 
         <script src="scripts/team.js"></script>
+        <script src="scripts/validation.js"></script>
 
 </body>
 
