@@ -71,9 +71,9 @@ $(document).ready(function() {
         data.forEach(function(e) {
             let url = `<span>
 
-                         <a href='team.html?id=${e.TeamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
+                         <a class= 'details mr-2' href='team.html?id=${e.TeamId}' title='Details' data-toggle='tooltip'><i class="far fa-file-alt fa-lg"></i></a>
                          <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.TeamId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
-                         <a class="delete" title="Unregister" data-teamid=${e.TeamId} data-toggle="modal" data-target="#exampleModal">                
+                         <a class="delete" title="Delete" data-teamid=${e.TeamId} data-toggle="modal" data-target="#myModal">                
                          <i class="fas fa-trash-alt fa-lg"></i>
                          </a>
                      </span>`
@@ -86,37 +86,20 @@ $(document).ready(function() {
         $(".delete").on("click", function() {
             let row = $(this);
             let teamId = row.attr("data-teamid");
-
-            let postData = "/api/teams/" + teamId;
-            console.log(teamId);
-
-            // $(this).parents("tr").find("td:not(:last-child)").each(function(key, value) {
-            //     if (key == "0")
-            //         postData = postData + "&studentname=" + $(this).text();
-            //     else
-            //         postData = postData + "&email=" + $(this).text();
-            // });
+            let url = "/api/teams/" + teamId;
 
             $("#btnConfirm").on('click', function() {
-
-                $("#exampleModal").modal('hide');
-
-                // let url = "/api/unregister";
-                // $.ajax({
-                //         url: url,
-                //         type: "POST",
-                //         data: postData
-                //     })
-                //     .done(function() {
-                //         //$(this).parents("tr").remove();
-                //         row.parents("tr").remove();
-                //     });
-
-                row.parents("tr").remove();
+                $.ajax({
+                        url: url,
+                        type: "DELETE"
+                    })
+                    .done(function() {
+                        row.parents("tr").remove();
+                        $("#myModal").modal('hide');
+                    });
+                // row.parents("tr").remove();
+                // $("#myModal").modal('hide');
             });
         });
     };
-
-
-
 });
