@@ -250,3 +250,36 @@
 .scroll-to-top i {
     font-weight: 800;
 }
+
+
+/********* table styles *************/
+
+table.table td a.save {
+    color: #27C46B;
+}
+
+table.table td a.add,
+table.table td a.cancel {
+    color: #27C46B;
+}
+
+table.table td a.edit {
+    color: #FFC107;
+}
+
+table.table td a.delete {
+    color: #E34724;
+}
+
+table.table .form-control.error {
+    border-color: #f50000;
+}
+
+table.table td .add,
+table.table td .save,
+table.table td .cancel {
+    display: none;
+}
+
+
+/********* end  of table styles *************/

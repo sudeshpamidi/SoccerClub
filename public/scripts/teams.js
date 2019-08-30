@@ -45,13 +45,11 @@ $(document).ready(function() {
     function getTeams(league) {
 
         let url = "/api/teams/byleague/" + league;
-        console.log(url);
         if (league == "all") {
             url = "/api/teams";
         };
 
         $.getJSON(url, function(teams) {
-            console.log(teams);
             populateHeader();
             populateTable(teams)
         });
@@ -72,12 +70,36 @@ $(document).ready(function() {
     function populateTable(data) {
         data.forEach(function(e) {
             let url = `<span>
-                         <a href='team.html?id=${e.TeamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
+
+                         <a class= 'details mr-2' href='team.html?id=${e.TeamId}' title='Details' data-toggle='tooltip'><i class="far fa-file-alt fa-lg"></i></a>
                          <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.TeamId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class="delete" title="Delete" data-teamid=${e.TeamId} data-toggle="modal" data-target="#myModal">                
+                         <i class="fas fa-trash-alt fa-lg"></i>
+                         </a>
                      </span>`
             let markup = "<tr><td>" + e.TeamName + "</td><td>" + e.League + "</td><td>" + e.ManagerName + "</td><td>" + e.ManagerPhone + "</td><td>" + url + "</td> </tr>";
             $("#tableTeams tbody").append(markup);
         });
-    };
 
+
+        /** Delete event handling */
+        $(".delete").on("click", function() {
+            let row = $(this);
+            let teamId = row.attr("data-teamid");
+            let url = "/api/teams/" + teamId;
+
+            $("#btnConfirm").on('click', function() {
+                $.ajax({
+                        url: url,
+                        type: "DELETE"
+                    })
+                    .done(function() {
+                        row.parents("tr").remove();
+                        $("#myModal").modal('hide');
+                    });
+                // row.parents("tr").remove();
+                // $("#myModal").modal('hide');
+            });
+        });
+    };
 });
