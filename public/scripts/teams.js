@@ -45,13 +45,11 @@ $(document).ready(function() {
     function getTeams(league) {
 
         let url = "/api/teams/byleague/" + league;
-        console.log(url);
         if (league == "all") {
             url = "/api/teams";
         };
 
         $.getJSON(url, function(teams) {
-            console.log(teams);
             populateHeader();
             populateTable(teams)
         });
@@ -72,12 +70,53 @@ $(document).ready(function() {
     function populateTable(data) {
         data.forEach(function(e) {
             let url = `<span>
+
                          <a href='team.html?id=${e.TeamId}'><i class='fas fa-info-circle fa-lg' title='Details' data-toggle='tooltip'></i></a>
                          <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.TeamId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class="delete" title="Unregister" data-teamid=${e.TeamId} data-toggle="modal" data-target="#exampleModal">                
+                         <i class="fas fa-trash-alt fa-lg"></i>
+                         </a>
                      </span>`
             let markup = "<tr><td>" + e.TeamName + "</td><td>" + e.League + "</td><td>" + e.ManagerName + "</td><td>" + e.ManagerPhone + "</td><td>" + url + "</td> </tr>";
             $("#tableTeams tbody").append(markup);
         });
+
+
+        /** Delete event handling */
+        $(".delete").on("click", function() {
+            let row = $(this);
+            let teamId = row.attr("data-teamid");
+
+            let postData = "/api/teams/" + teamId;
+            console.log(teamId);
+
+            // $(this).parents("tr").find("td:not(:last-child)").each(function(key, value) {
+            //     if (key == "0")
+            //         postData = postData + "&studentname=" + $(this).text();
+            //     else
+            //         postData = postData + "&email=" + $(this).text();
+            // });
+
+            $("#btnConfirm").on('click', function() {
+
+                $("#exampleModal").modal('hide');
+
+                // let url = "/api/unregister";
+                // $.ajax({
+                //         url: url,
+                //         type: "POST",
+                //         data: postData
+                //     })
+                //     .done(function() {
+                //         //$(this).parents("tr").remove();
+                //         row.parents("tr").remove();
+                //     });
+
+                row.parents("tr").remove();
+            });
+        });
     };
+
+
 
 });

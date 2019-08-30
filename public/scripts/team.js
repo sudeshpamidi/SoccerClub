@@ -5,6 +5,8 @@ $(document).ready(function() {
     let urlParams = new URLSearchParams(location.search);
     let teamId = urlParams.get("id");
 
+
+
     fillLeague($("#league"));
     fillAge($("#maxage"));
     fillAge($("#minage"));
@@ -30,7 +32,8 @@ $(document).ready(function() {
                 data: postData
             })
             .done(function() {
-                displayMessage("Team has been added/edited.");
+                displayMessage("Team has been added/edited."); // need to do
+                $('#teamModal').modal('show');
                 $("#save").html("Edit Team");
             })
             .fail(function() {
@@ -71,8 +74,14 @@ $(document).ready(function() {
             $("#minage option:contains(" + team["MinMemberAge"] + ")").attr('selected', 'selected');
             $("#maxage option:contains(" + team["MaxMemberAge"] + ")").attr('selected', 'selected');
             $("#maxnum option:contains(" + team["MaxTeamMembers"] + ")").attr('selected', 'selected');
+            $("input[name='teamgender'][value='" + team["TeamGender"] + "']").prop('checked', true);
 
             $("#save, h2").html("Edit Team");
+
+
+
+
+
         }
 
     }
