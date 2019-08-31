@@ -23,8 +23,6 @@ $(document).ready(function() {
      */
     function populateLeagues(leagues) {
 
-
-
         leagues.forEach(function(e) {
 
 
@@ -55,9 +53,5 @@ $(document).ready(function() {
 
             // $("#iconCards").append(html);
         });
-
-
-
     }
-
 });
