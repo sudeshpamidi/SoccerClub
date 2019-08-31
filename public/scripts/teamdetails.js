@@ -149,14 +149,22 @@ $(document).ready(function() {
         });
     };
 
+    $("#add").on('click', function() {
+        $("#frmPlayer")[0].reset(); //clear the all the element values
+        $("#playerModal").modal('show');
+    });
+
     /** Add event handling */
     $("#btnAdd").on("click", function() {
 
+        if (!validator.validate("#frmPlayer")) {
+            return;
+        }
         let url = "/api/teams/" + teamId + "/members";
         let postData = $("#frmPlayer").serialize();
         alert(url);
         console.log(postData);
-        $.ajax({
+        let jqXHR = $.ajax({
                 url: url,
                 type: "POST",
                 data: postData
@@ -164,12 +172,21 @@ $(document).ready(function() {
             .done(function() {
                 getTeam(teamId);
                 $("#playerModal").modal('hide');
+            })
+            .fail(function(jqXHR, status) {
+
+                $("#age").popover({
+                    trigger: 'focus',
+                    placement: 'right',
+                    content: jqXHR.responseText
+                });
+                $("#age").popover('show');
             });
     });
 
-    // $("#add").on('click', function() {
-    //     $("#playerModal").modal('show');        
-    // });
+    $("#playerModal").on('hidden.bs.modal', function() {
+        alert("closing..")
+    });
 
     /**
      * clears the table information.
