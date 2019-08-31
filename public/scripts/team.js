@@ -8,8 +8,8 @@ $(document).ready(function() {
 
 
     fillLeague($("#league"));
-    fillAge($("#maxage"));
     fillAge($("#minage"));
+    fillAge($("#maxage"));
     fillAge($("#maxnum"));
 
     if (teamId != "") {
@@ -24,7 +24,7 @@ $(document).ready(function() {
         let url = "/api/teams",
             type = ($(this).html() == "Edit Team" ? "PUT" : "POST");
 
-        $.ajax({
+        let jqXHR = $.ajax({
                 url: url,
                 type: type,
                 data: postData
@@ -36,8 +36,9 @@ $(document).ready(function() {
                 $("#save").html("Edit Team");
 
             })
-            .fail(function() {
-                console.log('Opps.. something went wrong in while creating the course.');
+            .fail(function(jqXHR1, status) {
+                console.log(jqXHR.responseText);
+                console.log('Opps.. something went wrong in while creating the course.' + status);
             });
     });
 
@@ -56,6 +57,7 @@ $(document).ready(function() {
             })
             .fail(function() {
                 //$("#teamid").popover("hide");
+
             })
             .done(function() {
                 //$("#save").html("Edit Course");
@@ -71,9 +73,10 @@ $(document).ready(function() {
             $("#managername").val(team["ManagerName"]);
             $("#managerphone").val(team["ManagerPhone"]);
             $("#manageremail").val(team["ManagerEmail"]);
-            $("#minage option:contains(" + team["MinMemberAge"] + ")").attr('selected', 'selected');
-            $("#maxage option:contains(" + team["MaxMemberAge"] + ")").attr('selected', 'selected');
-            $("#maxnum option:contains(" + team["MaxTeamMembers"] + ")").attr('selected', 'selected');
+            $("#minage").val(team["MinMemberAge"]);
+            $("#maxage").val(team["MaxMemberAge"]);
+            $("#maxnum").val(team["MaxTeamMembers"]);
+
             $("input[name='teamgender'][value='" + team["TeamGender"] + "']").prop('checked', true);
 
             $("#save, h2").html("Edit Team");
