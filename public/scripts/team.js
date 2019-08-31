@@ -5,8 +5,6 @@ $(document).ready(function() {
     let urlParams = new URLSearchParams(location.search);
     let teamId = urlParams.get("id");
 
-
-
     fillLeague($("#league"));
     fillAge($("#minage"));
     fillAge($("#maxage"));

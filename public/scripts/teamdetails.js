@@ -5,6 +5,9 @@ $(document).ready(function() {
 
     if (teamId != "") {
         getTeam(teamId);
+        $("#teamid").val(teamId);
+        fillAge($("#age"));
+
     }
 
     /**
@@ -16,6 +19,7 @@ $(document).ready(function() {
         let url = "/api/teams/" + teamId;
 
         $.getJSON(url, function(team) {
+                //clearResults($("table"));
                 populateTeam(team);
             })
             .fail(function() {
@@ -25,7 +29,6 @@ $(document).ready(function() {
                 //$("#save").html("Edit Course");
             });
     };
-
 
     function populateTeam(team) {
         console.log(team);
@@ -101,32 +104,6 @@ $(document).ready(function() {
         $("#managerCard .card-body").append(table);
     }
 
-
-
-    /**
-     * clears the table information.
-     * @param {*} table 
-     */
-    function clearResults(table) {
-        table.empty();
-    }
-
-    /**
-     * This is to fill the dropDown with the data in array of elements.
-     * @param {*} dropdown  -- dropdown name 
-     * @param {*} obj       -- javascript object
-     */
-    function fillDropDown(dropdown) {
-        let url = "/api/leagues";
-        $.getJSON(url, function(leagues) {
-            leagues.forEach(function(e) {
-                let option = new $("<option>", { value: e.Code, text: e.Name })
-                dropdown.append(option);
-            });
-        });
-    };
-
-
     /**
      * Display team information in the table -#tableteams
      * @param {object} data  -- teams object from Restfull services
@@ -171,4 +148,42 @@ $(document).ready(function() {
             });
         });
     };
-});
+
+    /** Add event handling */
+    $("#btnAdd").on("click", function() {
+
+        let url = "/api/teams/" + teamId + "/members";
+        let postData = $("#frmPlayer").serialize();
+        alert(url);
+        console.log(postData);
+        $.ajax({
+                url: url,
+                type: "POST",
+                data: postData
+            })
+            .done(function() {
+                getTeam(teamId);
+                $("#playerModal").modal('hide');
+            });
+    });
+
+    // $("#add").on('click', function() {
+    //     $("#playerModal").modal('show');        
+    // });
+
+    /**
+     * clears the table information.
+     * @param {*} table 
+     */
+    function clearResults(table) {
+        table.empty();
+    }
+
+
+    function fillAge(dropdown) {
+        for (let i = 1; i < 101; i++) {
+            let option = $("<option>", { value: i, text: i });
+            dropdown.append(option);
+        }
+    };
+})
