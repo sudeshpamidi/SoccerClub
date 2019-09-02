@@ -7,7 +7,6 @@ $(document).ready(function() {
         getTeam(teamId);
         $("#teamid").val(teamId);
         fillAge($("#age"));
-
     }
 
     /**
@@ -17,9 +16,8 @@ $(document).ready(function() {
      */
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
-
         $.getJSON(url, function(team) {
-                //clearResults($("table"));
+                clearResults($("table"));
                 populateTeam(team);
             })
             .fail(function() {
@@ -33,7 +31,6 @@ $(document).ready(function() {
     function populateTeam(team) {
         console.log(team);
         if (team != undefined) {
-
             diplayTeamDetails(team);
             diplayManagerDetails(team);
             diplayPlayers(team.TeamId, team.Members);
@@ -109,23 +106,31 @@ $(document).ready(function() {
      * @param {object} data  -- teams object from Restfull services
      */
     function diplayPlayers(teamid, data) {
+        let table = $("<table>", { class: "table table-bordered", id: "tablePlayers", width: "100%" });
+        let tbody = $("<tbody>");
 
+        let thead = $("<thead>");
         let headerMarkup = "<tr><th>Player Name</th><th>Player Contact Name</th><th>Player Email</th><th>Player Phone</th><th>Action</th></tr>";
-        $("#tableTeamPlayers thead").append(headerMarkup)
+        //$("#tableTeamPlayers thead").append(headerMarkup)
+        thead.append(headerMarkup);
+        table.append(thead);
 
         data.forEach(function(e) {
             let url = `<span>
                          <a class= 'details mr-2' href='teamdetails.html?id=${e.MemberId}' title='Details' data-toggle='tooltip'><i class="far fa-file-alt fa-lg"></i></a>
-                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' href='team.html?id=${e.MemberId}&edit=true'> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' data-memberid=${e.MemberId} data-toggle="modal" data-target="#playerModal"> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
                          <a class="delete" title="Delete" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
                          <i class="fas fa-trash-alt fa-lg"></i>
                          </a>
                      </span>`
 
             let markup = "<tr><td>" + e.MemberName + "</td><td>" + e.ContactName + "</td><td>" + e.Email + "</td><td>" + e.Phone + "</td><td>" + url + "</td> </tr>";
-            $("#tableTeamPlayers tbody").append(markup);
+            //$("#tableTeamPlayers tbody").append(markup);
+            tbody.append(markup);
         });
+        table.append(tbody);
 
+        $("#cardPlayers .card-body .table-responsive").append(table);
 
         /** Delete event handling */
         $(".delete").on("click", function() {
@@ -143,9 +148,11 @@ $(document).ready(function() {
                         row.parents("tr").remove();
                         $("#myModal").modal('hide');
                     });
-                // row.parents("tr").remove();
-                // $("#myModal").modal('hide');
             });
+        });
+
+        $(".edit").on('click', function() {
+            $("#playerModal").modal('show');
         });
     };
 
@@ -154,16 +161,13 @@ $(document).ready(function() {
         $("#playerModal").modal('show');
     });
 
-    /** Add event handling */
+    /** Add event handling in Modal screen*/
     $("#btnAdd").on("click", function() {
-
         if (!validator.validate("#frmPlayer")) {
             return;
         }
         let url = "/api/teams/" + teamId + "/members";
         let postData = $("#frmPlayer").serialize();
-        alert(url);
-        console.log(postData);
         let jqXHR = $.ajax({
                 url: url,
                 type: "POST",
@@ -174,19 +178,18 @@ $(document).ready(function() {
                 $("#playerModal").modal('hide');
             })
             .fail(function(jqXHR, status) {
-
-                $("#age").popover({
+                //$("#age").popover({
+                $("#playerModal").popover({
                     trigger: 'focus',
                     placement: 'right',
                     content: jqXHR.responseText
                 });
-                $("#age").popover('show');
+                $("#playerModal").popover('show');
             });
     });
 
-    $("#playerModal").on('hidden.bs.modal', function() {
-        alert("closing..")
-    });
+    // $("#playerModal").on('hidden.bs.modal', function() {        
+    // });
 
     /**
      * clears the table information.
@@ -195,7 +198,6 @@ $(document).ready(function() {
     function clearResults(table) {
         table.empty();
     }
-
 
     function fillAge(dropdown) {
         for (let i = 1; i < 101; i++) {
