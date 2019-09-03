@@ -17,6 +17,7 @@ $(document).ready(function() {
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
         $.getJSON(url, function(team) {
+                teamDetail = team;
                 clearResults($("table"));
                 populateTeam(team);
             })
@@ -33,10 +34,10 @@ $(document).ready(function() {
      * display in the tbody element.
      * @param {string} teamId  -- team Id
      */
-    function getMember(teamId, memberId, readonly) {
+    function getMember(teamId, memberId) {
         let url = "/api/teams/" + teamId + "/members/" + memberId;
         $.getJSON(url, function(member) {
-                populateMember(member, readonly);
+                populateMember(member);
             })
             .fail(function() {
                 //$("#teamid").popover("hide");
@@ -47,37 +48,32 @@ $(document).ready(function() {
     };
 
 
-
     function populateTeam(team) {
-        //console.log(team);
+
         if (team != undefined) {
             diplayTeamDetails(team);
             diplayManagerDetails(team);
             diplayPlayers(team.TeamId, team.Members);
 
-            // $("#save, h2").html("Edit Team");
+            if (team.Members.length >= team.MaxTeamMembers) {
+                $("#add").addClass("disabled");
+                $("#add").addClass("btn-secondary");
+            } else {
+                $("#add").removeClass("disabled");
+                $("#add").removeClass("btn-secondary");
+            }
         }
     };
 
-    function populateMember(member, readonly) {
-
-        // if (readonly == true) {
-        //     $("#playerModal .modal-title").html("Player");
-        // } else
-        $("#playerModal .modal-title").html("Edit Player");
+    function populateMember(member) {
 
         $("#memberid").val(member.MemberId);
         $("#playername").val(member.MemberName);
-        //.attr("readonly", readonly);
         $("#contactname").val(member.ContactName);
-        //.attr("readonly", readonly);
         $("#email").val(member.Email);
-        //.attr("readonly", readonly);
         $("#phone").val(member.Phone);
-        //.attr("readonly", readonly);
         $("input[name='gender'][value='" + member.Gender + "']").prop('checked', true);
         $("#age").val(member.Age);
-        //.attr("readonly", readonly);
     }
 
     function diplayTeamDetails(team) {
@@ -158,9 +154,9 @@ $(document).ready(function() {
 
         data.forEach(function(e) {
             let url = `<span>
-                         <a class= 'view mr-2'  title='Details' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId}><i class="far fa-file-alt fa-lg"></i></a>
-                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId} > <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
-                         <a class="delete" title="Delete" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
+                         <a class= 'view mr-2'  title='View player' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId}><i class="far fa-file-alt fa-lg"></i></a>
+                         <a class='edit mr-2' title='Edit player' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId} > <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class="delete" title="Delete player" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
                          <i class="fas fa-trash-alt fa-lg"></i>
                          </a>
                      </span>`
@@ -179,14 +175,14 @@ $(document).ready(function() {
             let teamId = row.attr("data-teamid");
             let memberId = row.attr("data-memberid");
             let url = "/api/teams/" + teamId + "/members/" + memberId;
-
             $("#btnConfirm").on('click', function() {
                 $.ajax({
                         url: url,
                         type: "DELETE"
                     })
                     .done(function() {
-                        row.parents("tr").remove();
+                        //row.parents("tr").remove();
+                        getTeam(teamId);
                         $("#myModal").modal('hide');
                     });
             });
@@ -196,35 +192,40 @@ $(document).ready(function() {
             let row = $(this);
             let teamId = row.attr("data-teamid");
             let memberId = row.attr("data-memberid");
-            getMember(teamId, memberId, false);
-
-            //$("#playerModal .modal-dialog").popover('disable');
+            getMember(teamId, memberId);
+            $("#playerModal .modal-title").html("Edit Player");
+            makePlayerReadOnly(false);
+            $("#playeridrow").hide();
             $("#playerModal").modal('show');
-
         });
 
         $(".view").on('click', function() {
             let row = $(this);
             let teamId = row.attr("data-teamid");
             let memberId = row.attr("data-memberid");
-            getMember(teamId, memberId, true);
-
-            //$("#playerModal .modal-dialog").popover('disable');
+            $("#playerModal .modal-title").html("Player");
+            getMember(teamId, memberId);
+            makePlayerReadOnly(true);
             $("#playerModal").modal('show');
-
         });
     };
     /** end of diplayPlayers */
 
     $("#add").on('click', function() {
-        $("#frmPlayer")[0].reset(); //clear the all the element values
-        //$("#playerModal .modal-dialog").popover('disable');
+
+        $("#frmPlayer")[0].reset(); //clear the all the element values        
+        $("#playerModal .modal-title").html("Add Player");
+        makePlayerReadOnly(false);
+
+        $("#playeridrow").hide();
         $("#playerModal").modal('show');
     });
 
     /** Add event handling in Modal screen*/
     $("#btnSave").on("click", function() {
         if (!validator.validate("#frmPlayer")) {
+            alert(team);
+            console.log(team);
             return;
         }
         let url = "/api/teams/" + teamId + "/members";
@@ -274,4 +275,37 @@ $(document).ready(function() {
             dropdown.append(option);
         }
     };
+
+    function makePlayerReadOnly(readonly) {
+
+        $("#playername").attr("readonly", readonly);
+        $("#contactname").attr("readonly", readonly);
+        $("#email").attr("readonly", readonly);
+        $("#phone").attr("readonly", readonly);
+        $("input[name='gender']").attr('disabled', readonly);
+
+        //$("#age").attr("readonly", readonly);
+        $("#age").attr("disabled", readonly);
+
+
+        if (readonly == true) {
+            $("#playername").popover('disable');
+            $("#contactname").popover('disable');
+            $("#email").popover('disable');
+            $("#phone").popover('disable');
+
+            $("#btnCacel").html("Ok");
+            $("#btnSave").hide();
+
+        } else {
+            $("#playername").popover('enable');
+            $("#contactname").popover('enable');
+            $("#email").popover('enable');
+            $("#phone").popover('enable');
+
+            $("#btnCacel").html("Cancel");
+            $("#btnSave").show();
+        }
+
+    }
 })

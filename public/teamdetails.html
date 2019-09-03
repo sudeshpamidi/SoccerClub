@@ -24,7 +24,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
         <a class="navbar-brand mr-1" href="index.html">South Windsor Soccer Club</a>
-        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
+        <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle">
 <i class="fas fa-bars"></i>
 </button>
 
@@ -131,11 +131,10 @@
                 <div class="card mt-3" id="cardPlayers">
                     <div class="card-header">
                         <h3>Players
-                            <a class="btn btn-primary" id="add" href="#" role="button" title="Add Team">
-                                <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+                            <a class="btn btn-primary" id="add" href="#" role="button" title="Add Player">
+                                <i class="fas fa-user-plus fa-lg"></i>
                             </a>
                         </h3>
-
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -188,31 +187,30 @@
     <!-- End of myModal -->
 
     <!-- Logout Modal-->
-    <div class="modal" id="playerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal" id="playerModal" tabindex="-1" role="dialog" aria-labelledby="playerModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document" data-content="Opps..error occured.">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add Player to Team</h5>
+                    <h5 class="modal-title" id="playerModalLabel">Add Player to Team</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
                 <div class="modal-body">
                     <form class="mb-2" id="frmPlayer" action="#" method="GET">
-                        <div class="form-group row">
-                            <label for="teamid" class="col-sm-4 offset-sm-1 col-form-label">Player ID:<span class="red">&nbsp;*</span></label>
+                        <div class="form-group row" id="playeridrow">
+                            <label for="memberid" class="col-sm-4 offset-sm-1 col-form-label">Player ID:<span class="red">&nbsp;*</span></label>
                             <div class="col-sm-6">
                                 <div class="input-group mb-1">
                                     <input type="text" class="form-control" placeholder="Player ID" id="memberid" name="memberid" aria-label="Member Id" required data-role="validate" readonly>
                                 </div>
                             </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="playername" class="col-sm-4 offset-sm-1 col-form-label">Player Name<span class="red">&nbsp;*</span></label>
                             <div class="col-sm-6">
                                 <div class="input-group mb-1">
-                                    <input type="text" class="form-control" title="Player Name" placeholder="Player Name" id="playername" name="membername" aria-label="Team Name" required data-role="validate" data-content="Player Name is required. The Team Name must be a series of alpha-numeric characters only.">
+                                    <input type="text" class="form-control" title="Player Name" placeholder="Player Name" id="playername" name="membername" maxlength="30" aria-label="Team Name" required data-role="validate" data-content="Player Name is required. The Team Name must be a series of alpha-numeric characters only.">
                                 </div>
                             </div>
                         </div>
@@ -220,7 +218,7 @@
                             <label for="contactname" class="col-sm-4 offset-sm-1 col-form-label">Contact Name<span class="red">&nbsp;*</span></label>
                             <div class="col-sm-6">
                                 <div class="input-group mb-1">
-                                    <input type="text" class="form-control" title="Contact Name" placeholder="Contact Name" id="contactname" name="contactname" aria-label="Contact Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
+                                    <input type="text" class="form-control" title="Contact Name" placeholder="Contact Name" id="contactname" name="contactname" maxlength="30" aria-label="Contact Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
                                 </div>
                             </div>
                         </div>
@@ -228,7 +226,8 @@
                             <label for="phone" class="col-sm-4 offset-sm-1 col-form-label">Phone:<span class="red">&nbsp;*</span></label>
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input type="text" class="form-control mb-1" title="Phone" maxlength="15" placeholder="Phone" id="phone" name="phone" aria-label="Phone" required data-content="Manager Phone is required. The Phone must be a series of alpha-numeric characters only." data-role="validate">
+                                    <input type="text" class="form-control mb-1" title="Phone" maxlength="15" placeholder="Phone" pattern="^[1-9]\d{2}-\d{3}-\d{4}$" id="phone" name="phone" aria-label="Phone" required data-content="Player's Phone is required.Phone should be in XXX-XXX-XXXX format."
+                                        data-role="validate">
                                 </div>
                             </div>
                         </div>
@@ -237,13 +236,13 @@
                             <label for="email" class="col-sm-4 offset-sm-1 col-form-label">Email:</label>
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Player Email" title="Player Email" id="email" name="email" aria-label="Email" required data-content="An email address is required." data-role="validate">
+                                    <input type="email" class="form-control" placeholder="Player Email" title="Player Email" id="email" name="email" maxlength="30" aria-label="Email" required data-content="An email address is required." data-role="validate">
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="gender" class="col-sm-4 offset-sm-1 col-form-label">Gender: <span class="red">&nbsp;*</span></label>
+                            <label for="gendermale" class="col-sm-4 offset-sm-1 col-form-label">Gender: <span class="red">&nbsp;*</span></label>
                             <div class="col-sm-6">
                                 <div class="input-group mt-1">
                                     <div class="form-check form-check-inline">
@@ -254,10 +253,6 @@
                                         <div class="custom-control custom-radio mr-3">
                                             <input class="custom-control-input" type="radio" id="genderfemale" name="gender" value="Female">
                                             <label class="custom-control-label" for="genderfemale">Female</label>
-                                        </div>
-                                        <div class="custom-control custom-radio mr-3">
-                                            <input class="custom-control-input" type="radio" id="genderany" name="gender" value="Any">
-                                            <label class="custom-control-label" for="genderany">Any</label>
                                         </div>
                                     </div>
 
@@ -276,7 +271,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <p class="small text-muted mr-5"><span class="red">*</span> are required fields</p>
+                    <button type="button" class="btn btn-secondary" id="btnCacel" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-primary" id="btnSave">Save</button>
                 </div>
             </div>
