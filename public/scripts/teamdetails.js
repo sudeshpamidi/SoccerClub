@@ -55,7 +55,11 @@ $(document).ready(function() {
             diplayManagerDetails(team);
             diplayPlayers(team.TeamId, team.Members);
 
-            // $("#save, h2").html("Edit Team");
+            if (team.Members.length >= team.MaxTeamMembers) {
+                $("#add").addClass("disabled");
+            } else {
+                $("#add").removeClass("disabled");
+            }
         }
     };
 
@@ -158,9 +162,9 @@ $(document).ready(function() {
 
         data.forEach(function(e) {
             let url = `<span>
-                         <a class= 'view mr-2'  title='Details' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId}><i class="far fa-file-alt fa-lg"></i></a>
-                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId} > <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
-                         <a class="delete" title="Delete" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
+                         <a class= 'view mr-2'  title='View player' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId}><i class="far fa-file-alt fa-lg"></i></a>
+                         <a class='edit mr-2' title='Edit player' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId} > <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class="delete" title="Delete player" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
                          <i class="fas fa-trash-alt fa-lg"></i>
                          </a>
                      </span>`
@@ -186,7 +190,8 @@ $(document).ready(function() {
                         type: "DELETE"
                     })
                     .done(function() {
-                        row.parents("tr").remove();
+                        //row.parents("tr").remove();
+                        getTeam(teamId);
                         $("#myModal").modal('hide');
                     });
             });
@@ -200,7 +205,6 @@ $(document).ready(function() {
 
             //$("#playerModal .modal-dialog").popover('disable');
             $("#playerModal").modal('show');
-
         });
 
         $(".view").on('click', function() {
@@ -211,14 +215,15 @@ $(document).ready(function() {
 
             //$("#playerModal .modal-dialog").popover('disable');
             $("#playerModal").modal('show');
-
         });
     };
     /** end of diplayPlayers */
 
     $("#add").on('click', function() {
+
         $("#frmPlayer")[0].reset(); //clear the all the element values
         //$("#playerModal .modal-dialog").popover('disable');
+        $("#playerModal .modal-title").html("Add Player");
         $("#playerModal").modal('show');
     });
 
