@@ -23,6 +23,7 @@ $(document).ready(function() {
      */
     function populateLeagues(leagues) {
 
+        let i = 0;
         leagues.forEach(function(e) {
 
             /*
@@ -50,11 +51,12 @@ $(document).ready(function() {
               </div>
             </div>`
             */
+            i = i + 1;
             html = `<div class="card mt-4">
-<img class="card-img-top" src="images/league1.jpg" alt="Card image cap">
+<img class="card-img-top" src="images/league${i}.jpg" alt="images/league${i}.jpg">
 <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <h5 class="card-title">${e.Name}</h5>
+    <p class="card-text">${e.Description}</p>
     <a class="btn btn-primary btn-sm" role="button" href="teams.html">View Teams</a>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 </div>

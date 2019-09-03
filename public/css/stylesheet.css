@@ -292,3 +292,11 @@ table.table td .cancel {
 .error {
     color: red;
 }
+
+.popover {
+    background: tomato;
+}
+
+.popover.bottom .arrow:after {
+    border-bottom-color: tomato;
+}

@@ -46,6 +46,11 @@ $(document).ready(function() {
             });
     });
 
+    $("#modalOk").click(function(event) {
+        event.preventDefault();
+        window.location.href = "teams.html";
+        $("#teamModal").modal("hide");
+    });
 
 
     /**
