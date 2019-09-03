@@ -63,7 +63,7 @@ $(document).ready(function() {
             // </div>`
 
 
-            $("#iconCards .col-sm-9").append(html);
+            // $("#iconCards .col-sm-9").append(html);
         });
     }
 });
