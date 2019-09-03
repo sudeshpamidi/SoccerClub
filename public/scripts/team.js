@@ -10,7 +10,8 @@ $(document).ready(function() {
     fillAge($("#maxage"));
     fillAge($("#maxnum"));
 
-    if (teamId != "") {
+    if (teamId != "" && teamId != null) {
+        console.log(teamId);
         getTeam(teamId);
     }
 
@@ -44,6 +45,14 @@ $(document).ready(function() {
                 $("#iconCards .card-body").popover('enable');
                 $("#iconCards .card-body").popover('show');
             });
+    });
+
+    $("#reset").on('click', function(e) {
+        if ($(".card-header h2").html() == "Edit Team") {
+            e.preventDefault();
+            getTeam(teamId);
+        } else
+            $('#frmTeam')[0].reset();
     });
 
     $("#modalOk").click(function(event) {
