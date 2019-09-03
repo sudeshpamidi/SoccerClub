@@ -515,7 +515,7 @@ app.put("/api/teams/:id/members", urlencodedParser, function(req, res) {
     // make sure edit doesn't violate team rules
 
     if (match.Age < team.MinMemberAge || match.Age > team.MaxMemberAge) {
-        res.status(409).send("Member's new age is outside of bounds of team age rules");
+        res.status(409).send("Member's new age is outside of bounds of team age rules. Age should be between " + team.MinMemberAge + " and " + team.MaxMemberAge);
         return;
     }
 
