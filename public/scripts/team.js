@@ -35,8 +35,14 @@ $(document).ready(function() {
 
             })
             .fail(function(jqXHR1, status) {
-                console.log(jqXHR.responseText);
-                console.log('Opps.. something went wrong in while creating the course.' + status);
+                $("#iconCards .card-body").attr('data-content', jqXHR.responseText);
+                $("#iconCards .card-body").popover({
+                    trigger: 'click',
+                    placement: 'bottom',
+                    content: jqXHR.responseText
+                });
+                $("#iconCards .card-body").popover('enable');
+                $("#iconCards .card-body").popover('show');
             });
     });
 

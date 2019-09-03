@@ -263,6 +263,10 @@ table.table td a.cancel {
     color: #27C46B;
 }
 
+table.table td a.view {
+    color: blue;
+}
+
 table.table td a.edit {
     color: #FFC107;
 }
@@ -283,3 +287,8 @@ table.table td .cancel {
 
 
 /********* end  of table styles *************/
+
+.red,
+.error {
+    color: red;
+}

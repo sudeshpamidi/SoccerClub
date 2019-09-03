@@ -28,8 +28,28 @@ $(document).ready(function() {
             });
     };
 
+    /**
+     * This function makes a call to restful services and gets the team information and 
+     * display in the tbody element.
+     * @param {string} teamId  -- team Id
+     */
+    function getMember(teamId, memberId, readonly) {
+        let url = "/api/teams/" + teamId + "/members/" + memberId;
+        $.getJSON(url, function(member) {
+                populateMember(member, readonly);
+            })
+            .fail(function() {
+                //$("#teamid").popover("hide");
+            })
+            .done(function() {
+                //$("#save").html("Edit Course");
+            });
+    };
+
+
+
     function populateTeam(team) {
-        console.log(team);
+        //console.log(team);
         if (team != undefined) {
             diplayTeamDetails(team);
             diplayManagerDetails(team);
@@ -38,6 +58,27 @@ $(document).ready(function() {
             // $("#save, h2").html("Edit Team");
         }
     };
+
+    function populateMember(member, readonly) {
+
+        // if (readonly == true) {
+        //     $("#playerModal .modal-title").html("Player");
+        // } else
+        $("#playerModal .modal-title").html("Edit Player");
+
+        $("#memberid").val(member.MemberId);
+        $("#playername").val(member.MemberName);
+        //.attr("readonly", readonly);
+        $("#contactname").val(member.ContactName);
+        //.attr("readonly", readonly);
+        $("#email").val(member.Email);
+        //.attr("readonly", readonly);
+        $("#phone").val(member.Phone);
+        //.attr("readonly", readonly);
+        $("input[name='gender'][value='" + member.Gender + "']").prop('checked', true);
+        $("#age").val(member.Age);
+        //.attr("readonly", readonly);
+    }
 
     function diplayTeamDetails(team) {
         let table = $("<table>");
@@ -117,8 +158,8 @@ $(document).ready(function() {
 
         data.forEach(function(e) {
             let url = `<span>
-                         <a class= 'details mr-2' href='teamdetails.html?id=${e.MemberId}' title='Details' data-toggle='tooltip'><i class="far fa-file-alt fa-lg"></i></a>
-                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' data-memberid=${e.MemberId} data-toggle="modal" data-target="#playerModal"> <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
+                         <a class= 'view mr-2'  title='Details' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId}><i class="far fa-file-alt fa-lg"></i></a>
+                         <a class='edit mr-2' title='Edit' data-toggle='tooltip' data-teamid=${teamid} data-memberid=${e.MemberId} > <i class='fa fa-pencil fa-lg' aria-hidden='true'></i></a>
                          <a class="delete" title="Delete" data-teamid=${teamid} data-memberid=${e.MemberId} data-toggle="modal" data-target="#myModal">
                          <i class="fas fa-trash-alt fa-lg"></i>
                          </a>
@@ -152,25 +193,49 @@ $(document).ready(function() {
         });
 
         $(".edit").on('click', function() {
+            let row = $(this);
+            let teamId = row.attr("data-teamid");
+            let memberId = row.attr("data-memberid");
+            getMember(teamId, memberId, false);
+
+            //$("#playerModal .modal-dialog").popover('disable');
             $("#playerModal").modal('show');
+
+        });
+
+        $(".view").on('click', function() {
+            let row = $(this);
+            let teamId = row.attr("data-teamid");
+            let memberId = row.attr("data-memberid");
+            getMember(teamId, memberId, true);
+
+            //$("#playerModal .modal-dialog").popover('disable');
+            $("#playerModal").modal('show');
+
         });
     };
+    /** end of diplayPlayers */
 
     $("#add").on('click', function() {
         $("#frmPlayer")[0].reset(); //clear the all the element values
+        //$("#playerModal .modal-dialog").popover('disable');
         $("#playerModal").modal('show');
     });
 
     /** Add event handling in Modal screen*/
-    $("#btnAdd").on("click", function() {
+    $("#btnSave").on("click", function() {
         if (!validator.validate("#frmPlayer")) {
             return;
         }
         let url = "/api/teams/" + teamId + "/members";
         let postData = $("#frmPlayer").serialize();
+        let type = "POST";
+        if ($("#memberid").val() != '') {
+            type = "PUT";
+        }
         let jqXHR = $.ajax({
                 url: url,
-                type: "POST",
+                type: type, //"POST",
                 data: postData
             })
             .done(function() {
@@ -179,17 +244,21 @@ $(document).ready(function() {
             })
             .fail(function(jqXHR, status) {
                 //$("#age").popover({
-                $("#playerModal").popover({
-                    trigger: 'focus',
-                    placement: 'right',
+                $("#playerModal .modal-dialog").attr('data-content', jqXHR.responseText);
+                $("#playerModal .modal-dialog").popover({
+                    trigger: 'manual',
+                    placement: 'bottom',
                     content: jqXHR.responseText
                 });
-                $("#playerModal").popover('show');
+                $("#playerModal .modal-dialog").popover('enable');
+                $("#playerModal .modal-dialog").popover('show');
             });
     });
 
-    // $("#playerModal").on('hidden.bs.modal', function() {        
-    // });
+    $("#playerModal").on('hidden.bs.modal', function() {
+        $("#playerModal .modal-dialog").popover('hide');
+        $("#playerModal .modal-dialog").popover('disable');
+    });
 
     /**
      * clears the table information.
