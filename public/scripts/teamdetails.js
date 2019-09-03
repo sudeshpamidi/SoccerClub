@@ -57,8 +57,10 @@ $(document).ready(function() {
 
             if (team.Members.length >= team.MaxTeamMembers) {
                 $("#add").addClass("disabled");
+                $("#add").addClass("btn-secondary");
             } else {
                 $("#add").removeClass("disabled");
+                $("#add").removeClass("btn-secondary");
             }
         }
     };
@@ -224,6 +226,7 @@ $(document).ready(function() {
         $("#frmPlayer")[0].reset(); //clear the all the element values
         //$("#playerModal .modal-dialog").popover('disable');
         $("#playerModal .modal-title").html("Add Player");
+        $("#playeridrow").hide();
         $("#playerModal").modal('show');
     });
 
