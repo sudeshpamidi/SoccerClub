@@ -5,7 +5,6 @@ $(document).ready(function() {
 
     getLeagues();
 
-
     /**
      * 
      */
@@ -26,8 +25,8 @@ $(document).ready(function() {
         let i = 0;
         leagues.forEach(function(e) {
 
-
-            let html = `<div class="col-xl-3 col-sm-6 mb-3">
+            /*
+                        let html = `<div class="col-xl-3 col-sm-6 mb-3">
                             <div class="card text-white bg-primary h-100">
                             <div class="card-body">
                                 <div class="card-body-icon">
@@ -42,7 +41,7 @@ $(document).ready(function() {
                             </div>
                         </div>`;
 
-            /*            html = `<div class="card bg-dark text-white">
+                        html = `<div class="card bg-dark text-white">
               <img class="card-img" src="..." alt="Card image">
               <div class="card-img-overlay">
                 <h5 class="card-title">Card title</h5>
@@ -52,15 +51,15 @@ $(document).ready(function() {
             </div>`
             */
             i = i + 1;
-            //             html = `<div class="card mt-4">
-            // <img class="card-img-top" src="images/league${i}.jpg" alt="images/league${i}.jpg">
-            // <div class="card-body">
-            //     <h5 class="card-title">${e.Name}</h5>
-            //     <p class="card-text">${e.Description}</p>
-            //     <a class="btn btn-primary btn-sm" role="button" href="teams.html">View Teams</a>
-            //     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            // </div>
-            // </div>`
+            html = `<div class="card mt-4">
+<img class="card-img-top" src="images/league${i}.jpg" alt="images/league${i}.jpg">
+<div class="card-body">
+    <h5 class="card-title">${e.Name}</h5>
+    <p class="card-text">${e.Description}</p>
+    <a class="btn btn-primary btn-sm" role="button" href="teams.html">View Teams</a>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+</div>
+</div>`
 
 
             $("#iconCards .col-sm-9").append(html);

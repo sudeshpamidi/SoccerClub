@@ -300,3 +300,13 @@ table.table td .cancel {
 .popover.bottom .arrow:after {
     border-bottom-color: tomato;
 }
+
+.jumbotron {
+    background-image: url(../images/soccer1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    color: white;
+    /* rgb(18, 16, 27)rgb(28, 25, 44);*/
+    max-height: 300px;
+}
