@@ -1,3 +1,7 @@
+/**
+ * Script file for team.html
+ * Author: Sudesh Pamidi
+ */
 "use strict"
 $(document).ready(function() {
 
@@ -14,6 +18,7 @@ $(document).ready(function() {
         getTeam(teamId);
     }
 
+    /***** event handlers for save, reset and modalOk *****/
     $("#save").click(function() {
         if (!validator.validate("#frmTeam") || !validateAge()) {
             return;
@@ -28,21 +33,12 @@ $(document).ready(function() {
                 data: postData
             })
             .done(function() {
-                displayMessage("Team has been added/edited."); // need to do
                 $('#teamModal').modal('show');
                 $(".card-header h2").html("Edit Team");
                 $("#save").html("Edit Team");
-
             })
             .fail(function(jqXHR1, status) {
-                $("#iconCards .card-body").attr('data-content', jqXHR.responseText);
-                $("#iconCards .card-body").popover({
-                    trigger: 'click',
-                    placement: 'bottom',
-                    content: jqXHR.responseText
-                });
-                $("#iconCards .card-body").popover('enable');
-                $("#iconCards .card-body").popover('show');
+                popover($("#iconCards .card-body"), jqXHR.responseText);
             });
     });
 
@@ -59,6 +55,7 @@ $(document).ready(function() {
         window.location.href = "teams.html";
         $("#teamModal").modal("hide");
     });
+    /***** end of event handlers  *****/
 
 
     /**
@@ -164,7 +161,6 @@ $(document).ready(function() {
         } else
             return true;
     }
-
 
     function popover(element, message) {
         element.popover('dispose');
