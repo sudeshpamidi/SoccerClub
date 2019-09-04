@@ -68,7 +68,6 @@ $(document).ready(function() {
      */
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
-
         $.getJSON(url, function(team) {
                 populateTeam(team);
             })
@@ -88,6 +87,11 @@ $(document).ready(function() {
     function populateTeam(team) {
 
         if (team != undefined) {
+
+            let minAgeOfMember = getMinAgeOfMember(team);
+            let maxAgeOfMember = getMaxAgeOfMember(team);
+
+
             $("#teamid").val(teamId);
             $("#teamname").val(team["TeamName"]);
             $("#league option:contains(" + team["League"] + ")").attr('selected', 'selected');
@@ -97,6 +101,9 @@ $(document).ready(function() {
             $("#minage").val(team["MinMemberAge"]);
             $("#maxage").val(team["MaxMemberAge"]);
             $("#maxnum").val(team["MaxTeamMembers"]);
+
+            $("#minageofmember").val(minAgeOfMember);
+            $("#maxageofmember").val(maxAgeOfMember);
 
             $("input[name='teamgender'][value='" + team["TeamGender"] + "']").prop('checked', true);
 
@@ -145,16 +152,48 @@ $(document).ready(function() {
      * Validates the min and max ages.
      */
     function validateAge() {
+
+        let url = "/api/teams/" + teamId;
+        if (!(Number($("#minage").val()) <= Number($("#minageofmember").val()) && Number($("#maxageofmember").val()) <= Number($("#maxage").val()))) {
+            popover($("#iconCards .card-body"), "Age is out of range of existing team members min age: " + $("#minageofmember").val() + ", max age: " + $("#maxageofmember").val());
+            return false;
+        }
         if (Number($("#minage").val()) > Number($("#maxage").val())) {
-            $("#minage").popover({
-                trigger: 'focus',
-                placement: 'right',
-                content: 'Min.Age is greater than Max.Age'
-            });
-            $("#minage").popover('show');
+            popover($("#iconCards .card-body"), "Min.Age is greater than Max.Age.")
             return false;
         } else
             return true;
+    }
+
+
+    function popover(element, message) {
+        element.popover('dispose');
+        element.popover({
+            trigger: 'focus',
+            placement: 'right',
+            content: message
+        });
+        element.popover('show');
+    }
+
+    function getMinAgeOfMember(team) {
+        let minAge = 100000;
+        for (let i = 0; i < team.Members.length; i++) {
+            if (Number(team.Members[i].Age) < minAge) {
+                minAge = Number(team.Members[i].Age);
+            }
+        }
+        return minAge;
+    }
+
+    function getMaxAgeOfMember(team) {
+        let maxAge = -1;
+        for (let i = 0; i < team.Members.length; i++) {
+            if (Number(team.Members[i].Age) > maxAge) {
+                maxAge = Number(team.Members[i].Age);
+            }
+        }
+        return maxAge;
     }
 
 });
