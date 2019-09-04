@@ -9,13 +9,14 @@ $(document).ready(function() {
     fillAge($("#minage"));
     fillAge($("#maxage"));
     fillAge($("#maxnum"));
+    $("#teamidrow").hide();
 
-    if (teamId != "") {
+    if (teamId != "" && teamId != null) {
         getTeam(teamId);
     }
 
     $("#save").click(function() {
-        if (!validator.validate("#frmTeam")) {
+        if (!validator.validate("#frmTeam") || !validateAge()) {
             return;
         }
         let postData = $("#frmTeam").serialize();
@@ -46,6 +47,14 @@ $(document).ready(function() {
             });
     });
 
+    $("#reset").on('click', function(e) {
+        if ($(".card-header h2").html() == "Edit Team") {
+            e.preventDefault();
+            getTeam(teamId);
+        } else
+            $('#frmTeam')[0].reset();
+    });
+
     $("#modalOk").click(function(event) {
         event.preventDefault();
         window.location.href = "teams.html";
@@ -74,7 +83,7 @@ $(document).ready(function() {
     };
 
     function populateTeam(team) {
-        console.log(team);
+
         if (team != undefined) {
             $("#teamid").val(teamId);
             $("#teamname").val(team["TeamName"]);
@@ -90,7 +99,6 @@ $(document).ready(function() {
 
             $("#save, h2").html("Edit Team");
         }
-
     }
 
     /**
@@ -124,5 +132,18 @@ $(document).ready(function() {
             dropdown.append(option);
         }
     };
+
+    function validateAge() {
+        if (Number($("#minage").val()) > Number($("#maxage").val())) {
+            $("#minage").popover({
+                trigger: 'focus',
+                placement: 'right',
+                content: 'Min.age is greater than Max.age'
+            });
+            $("#minage").popover('show');
+            return false;
+        } else
+            return true;
+    }
 
 });

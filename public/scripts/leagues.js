@@ -2,7 +2,6 @@
 $(document).ready(function() {
     // $('#dataTable').DataTable();
 
-
     getLeagues();
 
     /**
@@ -51,7 +50,7 @@ $(document).ready(function() {
             </div>`
             */
             i = i + 1;
-            html = `<div class="card mt-4">
+            html = `<div class="card shadow mt-4">
 <img class="card-img-top" src="images/league${i}.jpg" alt="images/league${i}.jpg">
 <div class="card-body">
     <h5 class="card-title">${e.Name}</h5>
