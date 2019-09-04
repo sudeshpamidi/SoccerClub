@@ -88,10 +88,11 @@ $(document).ready(function() {
             let minAgeOfMember = getMinAgeOfMember(team);
             let maxAgeOfMember = getMaxAgeOfMember(team);
 
-
             $("#teamid").val(teamId);
             $("#teamname").val(team["TeamName"]);
-            $("#league option:contains(" + team["League"] + ")").attr('selected', 'selected');
+            //$("#league option:contains(" + team["League"] + ")").attr('selected', 'selected');
+            $("#league option[value='" + team["League"] + "']").prop('selected', true);
+
             $("#managername").val(team["ManagerName"]);
             $("#managerphone").val(team["ManagerPhone"]);
             $("#manageremail").val(team["ManagerEmail"]);
@@ -151,7 +152,12 @@ $(document).ready(function() {
     function validateAge() {
 
         let url = "/api/teams/" + teamId;
-        if (!(Number($("#minage").val()) <= Number($("#minageofmember").val()) && Number($("#maxageofmember").val()) <= Number($("#maxage").val()))) {
+
+        if ((Number($("#minage").val()) > Number($("#minageofmember").val()))) {
+            popover($("#iconCards .card-body"), "Age is out of range of existing team members min age: " + $("#minageofmember").val() + ", max age: " + $("#maxageofmember").val());
+            return false;
+        }
+        if (Number($("#maxage").val()) < Number($("#maxageofmember").val())) {
             popover($("#iconCards .card-body"), "Age is out of range of existing team members min age: " + $("#minageofmember").val() + ", max age: " + $("#maxageofmember").val());
             return false;
         }
