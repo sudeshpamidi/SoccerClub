@@ -112,7 +112,7 @@
                             </div>
                             <div class="card-body" data-content="error">
                                 <form class="mb-2" id="frmTeam" action="#" method="GET">
-                                    <div class="form-group row">
+                                    <div class="form-group row" id="teamidrow">
                                         <label for="teamid" class="col-sm-2 offset-sm-3 col-form-label">Team ID:<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
@@ -125,7 +125,7 @@
                                         <label for="teamname" class="col-sm-2 offset-sm-3 col-form-label">Team Name<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
-                                                <input type="text" class="form-control" title="Team Name" placeholder="Team Name" id="teamname" name="teamname" aria-label="Team Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
+                                                <input type="text" class="form-control" title="Team Name" placeholder="Team Name" maxlength="30" id="teamname" name="teamname" aria-label="Team Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +151,7 @@
                                         <label for="managerphone" class="col-sm-2 offset-sm-3 col-form-label">Manager Phone:<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group">
-                                                <input type="text" class="form-control mb-1" title="Manager Phone" maxlength="30" placeholder="Manager Phone" id="managerphone" name="managerphone" aria-label="Manager Name" required data-content="Manager Phone is required. The Phone must be a series of alpha-numeric characters only."
+                                                <input type="text" class="form-control mb-1" title="Manager Phone" maxlength="15" pattern="^[1-9]\d{2}-\d{3}-\d{4}$" placeholder="Manager Phone" id="managerphone" name="managerphone" aria-label="Manager Phone" required data-content="Manager Phone is required. Phone should be in XXX-XXX-XXXX format."
                                                     data-role="validate">
                                             </div>
                                         </div>
@@ -160,7 +160,7 @@
                                         <label for="manageremail" class="col-sm-2 offset-sm-3 col-form-label">Manager Email:</label>
                                         <div class="col-sm-4">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" placeholder="Manager Email" title="Manager Email" id="manageremail" name="manageremail" aria-label="Email" required data-content="An email address is required." data-role="validate">
+                                                <input type="email" class="form-control" placeholder="Manager Email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" title="Manager Email" id="manageremail" name="manageremail" aria-label="Email" required data-content="An email address is required." data-role="validate">
                                             </div>
                                         </div>
                                     </div>
