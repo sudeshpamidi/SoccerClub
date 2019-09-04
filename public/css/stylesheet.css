@@ -194,7 +194,7 @@
     position: relative;
     top: 221px;
     height: 79px;
-    background-image: url(/public/images/slidelabelbg.png) repeat-x;
+    background-image: url(/public/images/slidelabelbg.png);
 }
 
 .card:hover {
@@ -293,13 +293,14 @@ table.table td .cancel {
     color: red;
 }
 
-.popover {
+
+/* .popover {
     background: tomato;
 }
 
 .popover.bottom .arrow:after {
     border-bottom-color: tomato;
-}
+} */
 
 .jumbotron {
     background-image: url(../images/soccer1.jpg);

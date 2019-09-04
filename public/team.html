@@ -59,11 +59,11 @@
                     <a class="dropdown-item" href="team.html">Add New Team</a>
                 </div>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="contacts.html">
+            <li class="nav-item">
+                <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Contacts</span></a>
-            </li> -->
+            </li>
         </ul>
 
         <div id="content-wrapper">
@@ -85,28 +85,30 @@
                             <div class="card-header">
                                 <h2>Add Team</h2>
                             </div>
-                            <div class="card-body" data-content="error">
+                            <div class="card-body">
                                 <form class="mb-2" id="frmTeam" action="#" method="GET">
                                     <div class="form-group row" id="teamidrow">
                                         <label for="teamid" class="col-sm-2 offset-sm-3 col-form-label">Team ID:<span class="red">&nbsp;*</span></label>
                                         <div class="col-sm-4">
                                             <div class="input-group mb-1">
                                                 <input type="text" class="form-control" placeholder="Team ID" id="teamid" name="teamid" aria-label="Team Id" required data-role="validate" readonly>
+                                                <input type="hidden" id="minageofmember" value="-1">
+                                                <input type="hidden" id="maxageofmember" value="1000">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="teamname" class="col-sm-2 offset-sm-3 col-form-label">Team Name<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="teamname" class="col-sm-3 offset-sm-2 col-form-label">Team Name:<span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mb-1">
                                                 <input type="text" class="form-control" title="Team Name" placeholder="Team Name" maxlength="30" id="teamname" name="teamname" aria-label="Team Name" required data-role="validate" data-content="Team Name is required. The Team Name must be a series of alpha-numeric characters only.">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="league" class="col-sm-2 offset-sm-3 col-form-label">League: <span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="league" class="col-sm-3 offset-sm-2 col-form-label">League: <span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mb-1">
                                                 <select class="custom-select form-control" id="league" name="leaguecode">                                                
                                                     </select>
@@ -114,8 +116,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="managername" class="col-sm-2 offset-sm-3 col-form-label">Manager Name:<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="managername" class="col-sm-3 offset-sm-2 col-form-label">Manager Name:<span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group">
                                                 <input type="text" class="form-control mb-1" title="Manager Name" maxlength="30" placeholder="Manager Name" id="managername" name="managername" aria-label="Manager Name" required data-content="Manager Name is required. The name must be a series of alpha-numeric characters only."
                                                     data-role="validate">
@@ -123,8 +125,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="managerphone" class="col-sm-2 offset-sm-3 col-form-label">Manager Phone:<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="managerphone" class="col-sm-3 offset-sm-2 col-form-label">Manager Phone:<span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group">
                                                 <input type="text" class="form-control mb-1" title="Manager Phone" maxlength="15" pattern="^[1-9]\d{2}-\d{3}-\d{4}$" placeholder="Manager Phone" id="managerphone" name="managerphone" aria-label="Manager Phone" required data-content="Manager Phone is required. Phone should be in XXX-XXX-XXXX format."
                                                     data-role="validate">
@@ -132,16 +134,16 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="manageremail" class="col-sm-2 offset-sm-3 col-form-label">Manager Email:</label>
-                                        <div class="col-sm-4">
+                                        <label for="manageremail" class="col-sm-3 offset-sm-2 col-form-label">Manager Email:</label>
+                                        <div class="col-sm-5">
                                             <div class="input-group">
-                                                <input type="email" class="form-control" placeholder="Manager Email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" title="Manager Email" id="manageremail" name="manageremail" aria-label="Email" required data-content="An email address is required." data-role="validate">
+                                                <input type="email" class="form-control" placeholder="Manager Email" title="Manager Email" id="manageremail" name="manageremail" aria-label="Email" required data-content="An email address is required." data-role="validate">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="minage" class="col-sm-2 offset-sm-3 col-form-label">Min. Age: <span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="minage" class="col-sm-3 offset-sm-2 col-form-label">Min. Age: <span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mb-1">
                                                 <select class="custom-select form-control" id="minage" name="minmemberage">
                                                 </select>
@@ -150,8 +152,8 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="maxage" class="col-sm-2 offset-sm-3 col-form-label">Max. Age: <span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="maxage" class="col-sm-3 offset-sm-2 col-form-label">Max. Age: <span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mb-1">
                                                 <select class="custom-select form-control" id="maxage" name="maxmemberage">                                                
                                                 </select>
@@ -159,8 +161,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="gendermale" class="col-sm-2 offset-sm-3 col-form-label">Gender: <span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="gendermale" class="col-sm-3 offset-sm-2 col-form-label">Gender: <span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mt-1">
                                                 <div class="form-check form-check-inline">
                                                     <div class="custom-control custom-radio mr-3">
@@ -182,68 +184,14 @@
                                     </div>
 
                                     <div class="form-group row">
-                                        <label for="maxnum" class="col-sm-2 offset-sm-3 col-form-label">Max Team Members: <span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
+                                        <label for="maxnum" class="col-sm-3 offset-sm-2 col-form-label">Max Team Members: <span class="red">&nbsp;*</span></label>
+                                        <div class="col-sm-5">
                                             <div class="input-group mb-1">
                                                 <select class="custom-select form-control" id="maxnum" name="maxteammembers">                                                
                                                     </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- 
-                                    <div class="form-group row">
-                                        <label for="category" class="col-sm-2 offset-sm-3 col-form-label">Category<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <select class="custom-select form-control" id="category" name="category">                                                
-                                                                    </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="location" class="col-sm-2 offset-sm-3 col-form-label">Location<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control mb-1" pattern="^[a-zA-Z0-9]+$" title="Location" maxlength="30" placeholder="Location" id="location" name="location" aria-label="Student Name" required data-content="A Location is required. The Location must be a series of alpha-numeric characters only. Maxumum of 30 characters."
-                                                    data-role="validate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="startdate" class="col-sm-2 offset-sm-3 col-form-label">Start Date<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control mb-1" pattern="[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{2}" title="Start Date" placeholder="Start Date (mm-dd-yy)" id="startdate" name="startdate" aria-label="Start Date" required data-content="A Start Date is a required in mm-dd-yy format."
-                                                    data-role="validate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="enddate" class="col-sm-2 offset-sm-3 col-form-label">End Date<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control mb-1" id="enddate" name="enddate" pattern="[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{2}" title="End Date" placeholder="End Date mm-dd-yy" aria-label="End Date" required data-content="A End Date is a required in mm-dd-yy format."
-                                                    data-role="validate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="meets" class="col-sm-2 offset-sm-3 col-form-label">Meet<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control mb-1" id="meets" name="meets" title="Meet" maxlength="50" placeholder="Meet" aria-label="Meet" required data-content="A Meet is required. The Meet must be a series of alpha-numeric characters only. Maximum of 50 characters."
-                                                    data-role="validate">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="fee" class="col-sm-2 offset-sm-3 col-form-label">Fee<span class="red">&nbsp;*</span></label>
-                                        <div class="col-sm-4">
-                                            <div class="input-group">
-                                                <input type="text" class="form-control mb-1" id="fee" name="fee" title="Fee" pattern="^\$?[0-9]?((\.[0-9]+)|([0-9]+(\.[0-9]+)?))$" maxlength="30" placeholder="Fee" aria-label="Fee" required data-content="A Fee is required. The Fee must be a amount." data-role="validate">
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </form>
                                 <div class="text-center">
                                     <div class="col-sm-8 offset-sm-2">
@@ -307,10 +255,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-
-    <!-- <script src="http://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" crossorigin="anonymous"></script> -->
-
     <script src="scripts/team.js"></script>
     <script src="scripts/validation.js"></script>
     <script src="scripts/sidebar.js"></script>
