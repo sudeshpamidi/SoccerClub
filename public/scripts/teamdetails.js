@@ -229,8 +229,6 @@ $(document).ready(function() {
     /** Add event handling in Modal screen*/
     $("#btnSave").on("click", function() {
         if (!validator.validate("#frmPlayer")) {
-            alert(team);
-            console.log(team);
             return;
         }
         let url = "/api/teams/" + teamId + "/members";
