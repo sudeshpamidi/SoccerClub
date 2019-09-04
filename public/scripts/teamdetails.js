@@ -99,6 +99,10 @@ $(document).ready(function() {
                 <td>${team.League}</td>
             </tr>
             <tr>
+                <th>Gender:</th>
+                <td>${team.TeamGender}</td>
+            </tr>            
+            <tr>
                 <th>Min. Age:</th>
                 <td>${team.MinMemberAge}</td>
             </tr>
