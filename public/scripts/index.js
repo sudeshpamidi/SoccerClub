@@ -1,22 +1,44 @@
 // Call the dataTables jQuery plugin
+"use strict"
 $(document).ready(function() {
-    // $('#dataTable').DataTable();
 
-
+    $("#today").html(new Date().toDateString())
     getLeagues();
+    getTeams("all");
 
 
     /**
-     * 
+     * To get the league count and display it on the card.
      */
     function getLeagues() {
-
         let url = "/api/leagues";
         $.getJSON(url, function(leagues) {
-            populateLeagues(leagues);
+            $("#leaguecount").html(leagues.length + " Leagues!");
         });
     };
 
+    /**
+     * Display the team information by leagues. 
+     * all -- provides all the teams.
+     * @param {string} category 
+     */
+    function getTeams(league) {
+
+        let url = "/api/teams/byleague/" + league;
+        if (league == "all") {
+            url = "/api/teams";
+        };
+
+        $.getJSON(url, function(teams) {
+            $("#teamcount").html(teams.length + " Teams!");
+            let playerCount = 0
+            teams.forEach(function(e) {
+                playerCount = playerCount + e.Members.length;
+            });
+            $("#playercount").html(playerCount + " Players!");
+
+        });
+    };
     /**
      * This custom function to populate the service information on the screen
      * @param {*} leagues 
@@ -64,6 +86,7 @@ $(document).ready(function() {
 
 
             // $("#iconCards .col-sm-9").append(html);
+
         });
     }
 });

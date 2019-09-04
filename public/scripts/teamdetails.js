@@ -1,3 +1,4 @@
+"use strict"
 $(document).ready(function() {
 
     let urlParams = new URLSearchParams(location.search);
@@ -17,7 +18,7 @@ $(document).ready(function() {
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
         $.getJSON(url, function(team) {
-                teamDetail = team;
+                //teamDetail = team;
                 clearResults($("table"));
                 populateTeam(team);
             })

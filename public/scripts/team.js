@@ -1,7 +1,6 @@
 "use strict"
 $(document).ready(function() {
 
-
     let urlParams = new URLSearchParams(location.search);
     let teamId = urlParams.get("id");
 
@@ -82,6 +81,10 @@ $(document).ready(function() {
             });
     };
 
+    /**
+     * populate the team data to screen fields
+     * @param {*} team 
+     */
     function populateTeam(team) {
 
         if (team != undefined) {
@@ -105,6 +108,7 @@ $(document).ready(function() {
      * display the success message, 
      * disable the register button 
      * and change the text from Cancel to OK
+     * THis is not been used
      */
     function displayMessage(message) {
         $("#msg").toggle();
@@ -126,6 +130,10 @@ $(document).ready(function() {
         });
     };
 
+    /**
+     * This is to fill the Age dropDown with numbers
+     * @param {*} dropdown 
+     */
     function fillAge(dropdown) {
         for (let i = 1; i < 101; i++) {
             let option = $("<option>", { value: i, text: i });
@@ -133,12 +141,15 @@ $(document).ready(function() {
         }
     };
 
+    /**
+     * Validates the min and max ages.
+     */
     function validateAge() {
         if (Number($("#minage").val()) > Number($("#maxage").val())) {
             $("#minage").popover({
                 trigger: 'focus',
                 placement: 'right',
-                content: 'Min.age is greater than Max.age'
+                content: 'Min.Age is greater than Max.Age'
             });
             $("#minage").popover('show');
             return false;

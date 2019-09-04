@@ -575,7 +575,7 @@ app.delete("/api/teams/:teamid/members/:memberid", urlencodedParser, function(re
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-let server = app.listen(8083, function() {
+let server = app.listen(8081, function() {
     let port = server.address().port
 
     console.log("App listening at port %s", port)
