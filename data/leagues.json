@@ -1,21 +1,26 @@
 [{
-        "Name": "Texas Scavenger Hunts",
-        "Code": "TexasHunts",
-        "Description": "This league consists of teams based in Texas"
+        "Name": "U6 Curriculum",
+        "Code": "U6Curriculum",
+        "Description": "This curriculum will provide you activities that teach DRIBBLING, SHIELDING, and MOVING the BALL FORWARD. The TACTICAL piece will develop as youth play in game situations and begin to understand how to play as a team. indicated or your team is having too much fun to stop playing."
     },
     {
-        "Name": "Open Scavenger Hunts",
-        "Code": "OpenHunt",
-        "Description": "This league consists of teams based all over the world"
+        "Name": "U8 Curriculum",
+        "Code": "U8Curriculum",
+        "Description": "These technical topics include, dribbling passing, receiving, shooting, and shot s , topping. Dribbling is the most important technique for the U8 soccer player. Every player needs to spend plenty of time on dribbling."
     },
     {
-        "Name": "Coastal Scavenger Hunts",
-        "Code": "CoastalHunt",
-        "Description": "This league consists teams that live near a coastline"
+        "Name": "U10 Curriculum",
+        "Code": "U10Curriculum",
+        "Description": "The curriculum guidelines are meant to be flexible as all players of the same age are certainly not at the same developmental level. It is important we challenge all players at a level that befits their ability."
     },
     {
-        "Name": "Eastern Scavenger Hunts",
-        "Code": "EasternHunt",
-        "Description": "This league consists teams that live near a coastline"
+        "Name": "U12 Curriculum",
+        "Code": "U12Curriculum",
+        "Description": "This curriculum has been specifically designed to support coaches with the delivery of soccer activities that are specific and relatable to the developmental needs of athletes aged 10 and 11 years (5th – 6th grade)."
+    },
+    {
+        "Name": "U15 Curriculum",
+        "Code": "U15Curriculum",
+        "Description": "This curriculum focuses on empowering players to make their own decisions and express themselves within a broader tactical plan.Starting with the U15 age group, our emphasis and approach begin to center on preparation for college soccer."
     }
 ]
