@@ -64,6 +64,7 @@ $(document).ready(function() {
 
 
             // $("#iconCards .col-sm-9").append(html);
+
         });
     }
 });

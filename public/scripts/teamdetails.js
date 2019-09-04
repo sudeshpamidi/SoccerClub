@@ -1,3 +1,4 @@
+"use strict"
 $(document).ready(function() {
 
     let urlParams = new URLSearchParams(location.search);
