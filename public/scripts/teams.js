@@ -1,10 +1,16 @@
 $(document).ready(function() {
 
+    let urlParams = new URLSearchParams(location.search);
+    let leagueCode = urlParams.get("leaguecode");
+
     fillDropDown($("#leagues"));
 
-    $("#leagues").on("change", displayTeams);
+    if (leagueCode != "" && leagueCode != null) {
+        getTeams(leagueCode);
+    } else { getTeams("all"); }
 
-    getTeams("all");
+
+    $("#leagues").on("change", displayTeams);
 
     /**
      * Display the team information in the table.
@@ -36,6 +42,7 @@ $(document).ready(function() {
                 let option = new $("<option>", { value: e.Code, text: e.Name })
                 dropdown.append(option);
             });
+            $("#leagues option[value='" + leagueCode + "']").prop('selected', true);
         });
     };
 

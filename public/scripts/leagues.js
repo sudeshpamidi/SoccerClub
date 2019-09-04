@@ -30,7 +30,7 @@ $(document).ready(function() {
                             <div class="card-body">
                                 <h5 class="card-title">${e.Name}</h5>
                                 <p class="card-text">${e.Description}</p>
-                                <a class="btn btn-primary btn-sm" role="button" href="teams.html">View Teams</a>
+                                <a class="btn btn-primary btn-sm" role="button" href="teams.html?leaguecode=${e.Code}">View Teams</a>
                                 <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>`
