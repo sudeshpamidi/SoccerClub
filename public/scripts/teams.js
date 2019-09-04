@@ -40,7 +40,7 @@ $(document).ready(function() {
     };
 
     /**
-     * Display the team information by category. 
+     * Display the team information by leagues. 
      * all -- provides all the teams.
      * @param {string} category 
      */

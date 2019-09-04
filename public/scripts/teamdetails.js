@@ -18,7 +18,7 @@ $(document).ready(function() {
     function getTeam(teamId) {
         let url = "/api/teams/" + teamId;
         $.getJSON(url, function(team) {
-                teamDetail = team;
+                //teamDetail = team;
                 clearResults($("table"));
                 populateTeam(team);
             })
